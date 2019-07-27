@@ -1,0 +1,34 @@
+require('dotenv').config();
+
+module.exports = {
+  development: {
+    client: 'pg',
+    connection: process.env.PG_DEV,
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+      tableName: 'bookr_dev'
+    },
+    seeds: { directory: './database/seeds' }
+  },
+  testing: {
+    client: 'pg',
+    connection: process.env.PG_TEST,
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+      tableName: 'bookr_test'
+    },
+    seeds: { directory: './database/seeds' }
+  },
+  production: {
+    client: 'pg',
+    connection: process.env.PG_PRODUCTION,
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+      tableName: 'bookr'
+    },
+    seeds: { directory: './database/seeds' }
+  }
+};

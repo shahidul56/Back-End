@@ -8,5 +8,7 @@ const books = require('./books');
 router.post('/register', validate(Users.registerSchema), auth.register);
 router.post('/login', validate(Users.loginSchema), auth.login);
 router.get('/books', authenticate, books.getBooks);
+router.get('/books/:id', authenticate, books.getBook);
+
 
 module.exports = router;

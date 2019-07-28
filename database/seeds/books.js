@@ -74,6 +74,7 @@ exports.seed = function(knex) {
           description: 'This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git experience.'
         },
         {
+
           id: 8,
           isbn: 9781449337711,
           title: 'Designing Evolvable Web APIs with ASP.NET',

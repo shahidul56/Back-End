@@ -17,15 +17,12 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const loggedUser = await Users.findUserBy({ email });
-      if (
-        loggedUser.length > 0 &&
-        bcrypt.compareSync(password, loggedUser[0].password)
-      ) {
-        const token = generateToken(loggedUser[0]);
+      const [loggedUser] = await Users.findUserBy({ email });
+      if (loggedUser && bcrypt.compareSync(password, loggedUser.password)) {
+        const token = generateToken(loggedUser);
         res
           .status(200)
-          .json({ message: `Welcome ${loggedUser[0].first_name}!`, token });
+          .json({ message: `Welcome ${loggedUser.first_name}!`, token });
       } else {
         res.status(401).json({ message: 'Unauthorized! Please register' });
       }

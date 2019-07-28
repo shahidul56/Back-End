@@ -17,7 +17,7 @@ module.exports = {
         const reviews = await Books.getBookReviews(id);
         book.reviews = reviews;
       } else {
-        res.status(404).json('Book ID does not exist');
+        res.status(404).json({ error: 'This book does not exist' });
       }
       res.status(200).json(book);
     } catch (error) {

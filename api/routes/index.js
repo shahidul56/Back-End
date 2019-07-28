@@ -4,11 +4,12 @@ const { authenticate } = require('../../middleware/authenticate');
 const Users = require('../../models/users');
 const auth = require('./auth');
 const books = require('./books');
+const reviews = require('./review');
 
 router.post('/register', validate(Users.registerSchema), auth.register);
 router.post('/login', validate(Users.loginSchema), auth.login);
 router.get('/books', authenticate, books.getBooks);
 router.get('/books/:id', authenticate, books.getBook);
-
+router.post('/books/:id/review', authenticate, reviews.addReview);
 
 module.exports = router;

@@ -9,5 +9,10 @@ module.exports = {
   },
   findBookBy: id => {
     return db('books').where({ id });
+  },
+  addBookReview: (review) => {
+    return db('reviews')
+    .insert(review)
+    .returning('*')
   }
 };

@@ -1,5 +1,19 @@
-exports.up = async function(knex) {
-  return await knex.schema
+exports.up = function(knex) {
+  return knex.schema
+    .createTable('books', book => {
+      book.increments();
+      book
+        .bigInteger('isbn')
+        .unsigned()
+        .notNullable();
+      book.string('title').notNullable();
+      book.string('subtitle').notNullable();
+      book.string('author').notNullable();
+      book.string('publisher').notNullable();
+      book.string('published').notNullable();
+      book.text('description').notNullable();
+      book.string('category');
+    })
     .createTable('reviews', review => {
       review.increments();
       review
@@ -15,24 +29,17 @@ exports.up = async function(knex) {
         .unsigned()
         .notNullable();
       review.text('review').notNullable();
-    })
-    .createTable('books', book => {
-      book.increments();
-      book.string('title', 255).notNullable();
-      book.string('author', 255).notNullable();
-      book.string('publisher', 255).notNullable();
-      book.string('category', 255).notNullable();
-      book
-        .integer('reviews')
+      review
+        .integer('book_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('reviews')
+        .inTable('books')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-    });
+    })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('books').dropTableIfExists('reviews');
+  return knex.schema.dropTableIfExists('reviews').dropTableIfExists('books');
 };

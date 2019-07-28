@@ -4,7 +4,10 @@ module.exports = {
   getAllBooks: () => {
     return db('books');
   },
-  findBookBy: filter => {
-    return db('books').where(filter).first();
+  getBookReviews: id => {
+    return db('reviews').where('book_id', id);
+  },
+  findBookBy: id => {
+    return db('books').where({ id });
   }
 };

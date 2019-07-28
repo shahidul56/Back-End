@@ -1,5 +1,4 @@
 require('dotenv').config();
-cons
 
 module.exports = {
   development: {

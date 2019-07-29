@@ -188,3 +188,41 @@ Returns: an object with review details.
     "ratings": 5
 }
 ```
+
+### [DELETE] Delete a book
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id
+
+Returns: an object with deleted book details.
+
+```
+deletedBook : {
+    {
+        "id": 3,
+        "isbn": "9781449365035",
+        "title": "Speaking JavaScript",
+        "subtitle": "An In-Depth Guide for Programmers",
+        "author": "Axel Rauschmayer",
+        "publisher": "O'Reilly Media",
+        "published": "2014-02-01T00:00:00.000Z",
+        "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
+        "category": null
+    }
+}
+```
+
+### [GET] Get a review by id
+
+#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
+
+Returns: an object with review details
+
+```
+{
+    "id": 17,
+    "reviewer": 2,
+    "ratings": 1,
+    "review": "I did not understand it",
+    "book_id": 19
+}
+```

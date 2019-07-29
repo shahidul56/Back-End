@@ -88,6 +88,8 @@ Returns: an object with user data and authentication token.
 
 These routes can only be accessed when token is sent in the authorization header.
 
+## Books
+
 ### [GET] Get all books
 
 #### URL: https://bookr-bw.herokuapp.com/api/books
@@ -163,6 +165,30 @@ Returns: an object with book details and an array of its reviews.
 }
 ```
 
+### [DELETE] Delete a book
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id
+
+Returns: an object with deleted book details.
+
+```
+deletedBook : {
+    {
+        "id": 3,
+        "isbn": "9781449365035",
+        "title": "Speaking JavaScript",
+        "subtitle": "An In-Depth Guide for Programmers",
+        "author": "Axel Rauschmayer",
+        "publisher": "O'Reilly Media",
+        "published": "2014-02-01T00:00:00.000Z",
+        "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
+        "category": null
+    }
+}
+```
+
+## Reviews
+
 ### [POST] Post a review for a book
 
 #### URL: https://bookr-bw.herokuapp.com/api/books/:id/review
@@ -189,29 +215,7 @@ Returns: an object with review details.
 }
 ```
 
-### [DELETE] Delete a book
-
-#### URL: https://bookr-bw.herokuapp.com/api/books/:id
-
-Returns: an object with deleted book details.
-
-```
-deletedBook : {
-    {
-        "id": 3,
-        "isbn": "9781449365035",
-        "title": "Speaking JavaScript",
-        "subtitle": "An In-Depth Guide for Programmers",
-        "author": "Axel Rauschmayer",
-        "publisher": "O'Reilly Media",
-        "published": "2014-02-01T00:00:00.000Z",
-        "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
-        "category": null
-    }
-}
-```
-
-### [GET] Get a review by id
+### [GET] Get a review by ID
 
 #### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
 
@@ -225,4 +229,29 @@ Returns: an object with review details
     "review": "I did not understand it",
     "book_id": 19
 }
+```
+
+### [GET] Get a review by user ID
+
+#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
+
+Returns: an array with user reviews 
+
+```
+[
+    {
+        "id": 4,
+        "reviewer": 1,
+        "ratings": 3,
+        "review": "Loved the book",
+        "book_id": 24
+    },
+    {
+        "id": 16,
+        "reviewer": 1,
+        "ratings": 2,
+        "review": "Hard to understand",
+        "book_id": 19
+    }
+]
 ```

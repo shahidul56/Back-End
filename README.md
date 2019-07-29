@@ -231,9 +231,9 @@ Returns: an object with review details
 }
 ```
 
-### [GET] Get a review by user ID
+### [GET] Get reviews by user ID
 
-#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
+#### URL: https://bookr-bw.herokuapp.com/api/user/:id/reviews
 
 Returns: an array with user reviews 
 
@@ -255,3 +255,29 @@ Returns: an array with user reviews
     }
 ]
 ```
+### [PUT] Edit review by ID
+
+#### URL: https://bookr-bw.herokuapp.com/api/user/reviews/:id
+
+Payload: an object with the following properties
+
+```
+{
+    "book_id": :id,
+    "review": "Awesome read!",
+    "reviewer": <user ID>,
+    "ratings": 4
+}
+```
+
+Returns: an object with edited review details.
+
+```
+{
+    "book_id": 3,
+    "review": "Awesome read!",
+    "reviewer": 1,
+    "ratings": 4
+}
+```
+

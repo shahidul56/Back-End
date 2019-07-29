@@ -88,6 +88,21 @@ Returns: an object with user data and authentication token.
 
 These routes can only be accessed when token is sent in the authorization header.
 
+## Users
+
+### [GET] Get user by ID
+
+Returns: an object with review details.
+
+```
+{
+    "id": 1,
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "email": "jane@gmail.com"
+}
+```
+
 ## Books
 
 ### [GET] Get all books

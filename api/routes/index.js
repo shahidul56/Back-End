@@ -26,5 +26,12 @@ router.delete('/books/:id', authenticate, books.deleteBookById);
 // Reviews
 router.get('/reviews/:id', authenticate, reviews.getReviewById);
 router.get('/user/:id/reviews', authenticate, reviews.getUserReviews);
-router.put('/reviews/:id', validate(Review.reviewSchema), reviews.editReview);
+router.put(
+  '/reviews/:id',
+  authenticate,
+  validate(Review.reviewSchema),
+  reviews.editReview
+);
+router.delete('/reviews/:id', authenticate, reviews.deleteReview);
+
 module.exports = router;

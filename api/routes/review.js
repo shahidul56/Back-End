@@ -63,5 +63,19 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error: error });
     }
+  },
+  deleteReview: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const [review] = await Review.findReviewById(id);
+      if (review) {
+        const [delReview] = await Review.deleteReview(id);
+        res.status(200).json({ deleted_review: delReview });
+      } else {
+        res.status(404).json({ error: 'This review does not exist' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   }
 };

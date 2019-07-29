@@ -281,3 +281,20 @@ Returns: an object with edited review details.
 }
 ```
 
+### [DELETE] Delete a review
+
+#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
+
+Returns: an object with deleted review details.
+
+```
+{
+    "deleted_review": {
+        "id": 16,
+        "reviewer": 1,
+        "ratings": 2,
+        "review": "Hard to understand",
+        "book_id": 19
+    }
+}
+```

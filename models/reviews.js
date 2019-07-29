@@ -14,6 +14,12 @@ module.exports = {
       .update(review)
       .returning('*');
   },
+  deleteReview: id => {
+    return db('reviews')
+      .where({ id })
+      .del()
+      .returning('*');
+  },
   reviewSchema: review => {
     const schema = Joi.object().keys({
       review: Joi.string()

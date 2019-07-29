@@ -19,5 +19,5 @@ router.post(
 );
 router.delete('/books/:id', authenticate, books.deleteBookById);
 router.get('/reviews/:id', authenticate, reviews.getReviewById);
-
+router.get('/user/:id/reviews', authenticate, reviews.getUserReviews);
 module.exports = router;

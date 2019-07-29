@@ -22,6 +22,23 @@ Stretch Goal: A link to each book will take me to a site where I can purchase a 
 
 # API Documentation
 
+## API Endpoints
+
+|    Links                                                     | Endpoints                  | 
+| ----------------                                             |----------------------------|
+| [POST Registration](#post-registration)                      | `/api/register`            |
+| [POST Login](#post-login)                                    | `/api/login`               |
+| [GET User By ID](#get-get-user-by-id)                        | `/api/users/:id`           | 
+| [GET Books](#get-get-all-books)                              | `/api/books`               | 
+| [GET Book By ID](#get-get-book-by-id)                        | `/api/books/:id`           | 
+| [DELETE Book By ID](#delete-delete-a-book)                   | `/api/books/:id `          | 
+| [POST Review for Book](#post-post-a-review-for-a-book)       | `/api/books/:id/review`    | 
+| [GET Review by ID](#get-get-a-review-by-id)                  | `/api/reviews/:id`         | 
+| [GET Reviews by User ID](#get-get-reviews-by-user-id)        | `/api/user/:id/reviews`    | 
+| [PUT Edit review by ID](#put-edit-review-by-id)              | `/api/reviews/:id`         | 
+| [DELETE Review by ID](#delete-delete-a-review)               | `/api/reviews/:id`         | 
+
+
 ## Authentication
 
 ### [POST] Registration
@@ -91,6 +108,8 @@ These routes can only be accessed when token is sent in the authorization header
 ## Users
 
 ### [GET] Get user by ID
+
+#### URL: https://bookr-bw.herokuapp.com/api/users/:id
 
 Returns: an object with review details.
 

@@ -23,5 +23,19 @@ module.exports = {
     } catch (error) {
       res.status(500).json(error);
     }
+  },
+  deleteBookById: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const [book] = await Books.findBookBy(id);
+      if (book) {
+        const delBook = await Books.deleteBook(id);
+        res.status(200).json({ deletedBook: delBook });
+      } else {
+        res.status(404).json('This book does not exist');
+      }
+    } catch (error) {
+      res.status(500).json({ error });
+    }
   }
 };

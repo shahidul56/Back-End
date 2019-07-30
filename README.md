@@ -282,7 +282,7 @@ Returns: an array with user reviews
 ```
 ### [PUT] Edit review by ID
 
-#### URL: https://bookr-bw.herokuapp.com/api/user/reviews/:id
+#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
 
 Payload: an object with the following properties
 

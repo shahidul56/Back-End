@@ -7,11 +7,12 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable();
       book.string('title').notNullable();
-      book.string('subtitle').notNullable();
+      book.string('subtitle');
       book.string('author').notNullable();
       book.string('publisher').notNullable();
       book.string('published').notNullable();
       book.text('description').notNullable();
+      book.string('url').notNullable();
       book.string('category');
     })
     .createTable('reviews', review => {

@@ -9,7 +9,7 @@ module.exports = {
     return db('reviews').where('book_id', id);
   },
   findBookBy: id => {
-    return db('books').where({ id });
+    return db('books').where({ id }).first();
   },
   addBookReview: review => {
     return db('reviews')

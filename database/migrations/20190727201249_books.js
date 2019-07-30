@@ -39,8 +39,30 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })
+    .createTable('shelf', shelf => {
+      shelf.increments();
+      shelf
+        .integer('book_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('books')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      shelf
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('reviews').dropTableIfExists('books');
+  return knex.schema
+    .dropTableIfExists('shelf')
+    .dropTableIfExists('reviews')
+    .dropTableIfExists('books');
 };

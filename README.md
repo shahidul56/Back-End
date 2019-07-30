@@ -37,6 +37,7 @@ Stretch Goal: A link to each book will take me to a site where I can purchase a 
 | [GET Reviews by User ID](#get-get-reviews-by-user-id)        | `/api/user/:id/reviews`    | 
 | [PUT Edit review by ID](#put-edit-review-by-id)              | `/api/reviews/:id`         | 
 | [DELETE Review by ID](#delete-delete-a-review)               | `/api/reviews/:id`         | 
+| [POST Add book to shelf](#post-add-book-to-shelf)            | `/api/books/:id/shelf`     | 
 
 
 ## Authentication
@@ -321,5 +322,31 @@ Returns: an object with deleted review details.
         "review": "Hard to understand",
         "book_id": 19
     }
+}
+```
+
+### [POST] Add book to shelf
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id/shelf
+
+Payload: an object with the following properties
+
+```
+{
+    "book_id": <:id from params>,
+    "user_id": <logged user id>
+}
+```
+
+Returns: an object with the saved book details.
+
+```
+{
+    "savedBook": {
+        "id": 10,
+        "book_id": 5,
+        "user_id": 2
+    },
+    "message": "Book saved to library"
 }
 ```

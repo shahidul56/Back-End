@@ -17,6 +17,7 @@ router.post('/login', validate(Users.loginSchema), auth.login);
 router.get('/users/:id', authenticate, users.getUsersByID);
 router.post('/books/:id/shelf', authenticate, books.saveBooktoShelf);
 router.get('/users/:id/shelf', authenticate, users.getUserShelf);
+router.delete('/books/:id/shelf', authenticate, books.deleteBookFromShelf);
 
 // Books
 router.get('/books', authenticate, books.getBooks);

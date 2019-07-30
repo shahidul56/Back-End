@@ -24,21 +24,22 @@ Stretch Goal: A link to each book will take me to a site where I can purchase a 
 
 ## API Endpoints
 
-| Links                                                              | Endpoints               |
-| ------------------------------------------------------------------ | ----------------------- |
-| [POST Registration](#post-registration)                            | `/api/register`         |
-| [POST Login](#post-login)                                          | `/api/login`            |
-| [GET User By ID](#get-get-user-by-id)                              | `/api/users/:id`        |
-| [GET Books](#get-get-all-books)                                    | `/api/books`            |
-| [GET Book By ID](#get-get-book-by-id)                              | `/api/books/:id`        |
-| [DELETE Book By ID](#delete-delete-a-book)                         | `/api/books/:id`        |
-| [POST Review for Book](#post-post-a-review-for-a-book)             | `/api/books/:id/review` |
-| [GET Review by ID](#get-get-a-review-by-id)                        | `/api/reviews/:id`      |
-| [GET Reviews by User ID](#get-get-reviews-by-user-id)              | `/api/user/:id/reviews` |
-| [PUT Edit review by ID](#put-edit-review-by-id)                    | `/api/reviews/:id`      |
-| [DELETE Review by ID](#delete-delete-a-review)                     | `/api/reviews/:id`      |
-| [POST Add book to shelf](#post-add-book-to-shelf)                  | `/api/books/:id/shelf`  |
-| [GET User's saved books in shelf](#get-get-users-saved-books)      | `/api/users/:id/shelf`  |
+| Links                                                                     | Endpoints               |
+| ------------------------------------------------------------------------- | ----------------------- |
+| [POST Registration](#post-registration)                                   | `/api/register`         |
+| [POST Login](#post-login)                                                 | `/api/login`            |
+| [GET User By ID](#get-get-user-by-id)                                     | `/api/users/:id`        |
+| [GET Books](#get-get-all-books)                                           | `/api/books`            |
+| [GET Book By ID](#get-get-book-by-id)                                     | `/api/books/:id`        |
+| [DELETE Book By ID](#delete-delete-a-book)                                | `/api/books/:id`        |
+| [POST Review for Book](#post-post-a-review-for-a-book)                    | `/api/books/:id/review` |
+| [GET Review by ID](#get-get-a-review-by-id)                               | `/api/reviews/:id`      |
+| [GET Reviews by User ID](#get-get-reviews-by-user-id)                     | `/api/user/:id/reviews` |
+| [PUT Edit review by ID](#put-edit-review-by-id)                           | `/api/reviews/:id`      |
+| [DELETE Review by ID](#delete-delete-a-review)                            | `/api/reviews/:id`      |
+| [POST Add book to shelf](#post-add-book-to-shelf)                         | `/api/books/:id/shelf`  |
+| [GET User's saved books in shelf](#get-get-users-saved-books)             | `/api/users/:id/shelf`  |
+| [DELETE User's book from shelf](#delete-users-saved-book-from-shelf)      | `/api/books/:id/shelf`  |
 
 ## Authentication
 
@@ -375,4 +376,21 @@ Returns: an array with the user's saved book details.
         "user_id": 4
     }
 ]
+```
+
+### [DELETE] User's saved book from shelf
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id/shelf
+
+Returns: an object with the deleted book details.
+
+
+```
+{
+    "deletedBook": {
+        "id": 4,
+        "book_id": 8,
+        "user_id": 4
+    }
+}
 ```

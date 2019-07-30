@@ -13,7 +13,7 @@ module.exports = {
   getBook: async (req, res) => {
     try {
       const { id } = req.params;
-      const [book] = await Books.findBookBy(id);
+      const book = await Books.findBookBy(id);
       if (book) {
         const reviews = await Books.getBookReviews(id);
         book.reviews = reviews;

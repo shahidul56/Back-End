@@ -38,4 +38,25 @@ describe('Books', () => {
       .set('Authorization', token)
       .expect(200);
   });
+
+  it('Should return an object of an individual book when the id is passed in the url', () => {
+    return request
+    .get('/api/books/1')
+    .set('Authorization', token)
+    .expect(200)
+  })
+
+  it('Should return an error if the book is not available', () => {
+    return request
+    .get('/api/books/1000')
+    .set('Authorization', token)
+    .expect(404)
+  })
+
+  // it('Should delete the book with that id', () => {
+  //   return request
+  //   .delete('/api/books/8')
+  //   .set('Authorization', token)
+  //   .expect(200);
+  // })
 });

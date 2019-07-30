@@ -10,11 +10,6 @@ module.exports = {
   findUserBy: filter => {
     return db('users').where(filter);
   },
-  addBookToShelf: book => {
-    return db('shelf')
-      .insert(book)
-      .returning('*');
-  },
   registerSchema: user => {
     const schema = Joi.object().keys({
       first_name: Joi.string()

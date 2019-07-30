@@ -24,21 +24,21 @@ Stretch Goal: A link to each book will take me to a site where I can purchase a 
 
 ## API Endpoints
 
-|    Links                                                     | Endpoints                  | 
-| ----------------                                             |----------------------------|
-| [POST Registration](#post-registration)                      | `/api/register`            |
-| [POST Login](#post-login)                                    | `/api/login`               |
-| [GET User By ID](#get-get-user-by-id)                        | `/api/users/:id`           | 
-| [GET Books](#get-get-all-books)                              | `/api/books`               | 
-| [GET Book By ID](#get-get-book-by-id)                        | `/api/books/:id`           | 
-| [DELETE Book By ID](#delete-delete-a-book)                   | `/api/books/:id `          | 
-| [POST Review for Book](#post-post-a-review-for-a-book)       | `/api/books/:id/review`    | 
-| [GET Review by ID](#get-get-a-review-by-id)                  | `/api/reviews/:id`         | 
-| [GET Reviews by User ID](#get-get-reviews-by-user-id)        | `/api/user/:id/reviews`    | 
-| [PUT Edit review by ID](#put-edit-review-by-id)              | `/api/reviews/:id`         | 
-| [DELETE Review by ID](#delete-delete-a-review)               | `/api/reviews/:id`         | 
-| [POST Add book to shelf](#post-add-book-to-shelf)            | `/api/books/:id/shelf`     | 
-
+| Links                                                              | Endpoints               |
+| ------------------------------------------------------------------ | ----------------------- |
+| [POST Registration](#post-registration)                            | `/api/register`         |
+| [POST Login](#post-login)                                          | `/api/login`            |
+| [GET User By ID](#get-get-user-by-id)                              | `/api/users/:id`        |
+| [GET Books](#get-get-all-books)                                    | `/api/books`            |
+| [GET Book By ID](#get-get-book-by-id)                              | `/api/books/:id`        |
+| [DELETE Book By ID](#delete-delete-a-book)                         | `/api/books/:id`        |
+| [POST Review for Book](#post-post-a-review-for-a-book)             | `/api/books/:id/review` |
+| [GET Review by ID](#get-get-a-review-by-id)                        | `/api/reviews/:id`      |
+| [GET Reviews by User ID](#get-get-reviews-by-user-id)              | `/api/user/:id/reviews` |
+| [PUT Edit review by ID](#put-edit-review-by-id)                    | `/api/reviews/:id`      |
+| [DELETE Review by ID](#delete-delete-a-review)                     | `/api/reviews/:id`      |
+| [POST Add book to shelf](#post-add-book-to-shelf)                  | `/api/books/:id/shelf`  |
+| [GET User's saved books in shelf](#get-get-users-saved-books)      | `/api/users/:id/shelf`  |
 
 ## Authentication
 
@@ -261,7 +261,7 @@ Returns: an object with review details
 
 #### URL: https://bookr-bw.herokuapp.com/api/user/:id/reviews
 
-Returns: an array with user reviews 
+Returns: an array with user reviews
 
 ```
 [
@@ -281,6 +281,7 @@ Returns: an array with user reviews
     }
 ]
 ```
+
 ### [PUT] Edit review by ID
 
 #### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
@@ -349,4 +350,29 @@ Returns: an object with the saved book details.
     },
     "message": "Book saved to library"
 }
+```
+
+### [GET] Get user's saved books
+
+#### URL: https://bookr-bw.herokuapp.com/api/users/:id/shelf
+
+Returns: an array with the user's saved book details.
+
+```
+[
+    {
+        "id": 4,
+        "isbn": "9780435025052",
+        "title": "Interactive Mental Maths",
+        "subtitle": "Working with the Whole Class",
+        "author": "Peter Patilla",
+        "publisher": "Heinemann",
+        "published": "1999",
+        "description": "Interactive Mental Maths series is designed to support the implementation of the National Numeracy Strategy and Improving Mathematics Education 5-14. ",
+        "url": "http://books.google.com/books/content?id=oVSFhYCK3zAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        "category": "Mathematics",
+        "book_id": 8,
+        "user_id": 4
+    }
+]
 ```

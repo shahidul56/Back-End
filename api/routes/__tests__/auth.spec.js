@@ -3,10 +3,8 @@ const server = require('../../server');
 const request = require('supertest')(server);
 
 beforeAll(async () => {
-    await db.raw(
-      'TRUNCATE TABLE users, books, reviews CASCADE'
-    );
-  });
+  await db.raw('TRUNCATE TABLE users, books, reviews CASCADE');
+});
 
 describe('Authentication', () => {
   it('Users are able to sign up', () => {

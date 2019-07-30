@@ -3,12 +3,17 @@ const db = require('../database/dbConfig');
 
 module.exports = {
   addUser: user => {
-   return db('users')
+    return db('users')
       .insert(user)
-      .returning('*')
+      .returning('*');
   },
   findUserBy: filter => {
     return db('users').where(filter);
+  },
+  addBookToShelf: book => {
+    return db('shelf')
+      .insert(book)
+      .returning('*');
   },
   registerSchema: user => {
     const schema = Joi.object().keys({

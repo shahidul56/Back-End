@@ -1,4 +1,5 @@
 const Books = require('../../models/books');
+const Users = require('../../models/users');
 
 module.exports = {
   getBooks: async (req, res) => {
@@ -36,6 +37,22 @@ module.exports = {
       }
     } catch (error) {
       res.status(500).json({ error });
+    }
+  },
+  saveBooktoShelf: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { user_id } = req.body;
+      const book = await Books.findBookBy(id);
+
+      if (book) {
+        const [savedBook] = await Users.addBookToShelf({ user_id: Number(user_id), book_id: Number(id) });
+        res.status(200).json({savedBook, message:'Book saved to library'});
+      } else {
+        res.status(404).json({ error: 'Book not available' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   }
 };

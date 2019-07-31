@@ -9,13 +9,24 @@ module.exports = {
       const { review, reviewer, ratings } = req.body;
       const book = await Books.findBookBy(id);
       if (book) {
-        const bookReview = await Books.addBookReview({
-          book_id: id,
-          review,
-          reviewer,
-          ratings
-        });
-        res.status(201).json(bookReview);
+        const userReviews = await Review.findUsersReviews(reviewer);
+        const reviewExists = userReviews.filter(
+          review => review.book_id === Number(id)
+        );
+        
+        if (reviewExists.length > 0) {
+          res
+            .status(422)
+            .json('You have already reviewed this book, perhaps try editing');
+        } else {
+          const bookReview = await Books.addBookReview({
+            book_id: id,
+            review,
+            reviewer,
+            ratings
+          });
+          res.status(201).json(bookReview);
+        }
       } else {
         res.status(404).json({ error: 'This book does not exist' });
       }

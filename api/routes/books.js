@@ -46,11 +46,21 @@ module.exports = {
       const book = await Books.findBookBy(id);
 
       if (book) {
-        const [savedBook] = await Shelf.addBookToShelf({
-          user_id: Number(user_id),
-          book_id: Number(id)
-        });
-        res.status(200).json({ savedBook, message: 'Book saved to library' });
+        const userShelf = await Shelf.getUserShelf(user_id);
+        console.log(userShelf)
+
+        const bookExists = userShelf.filter(book => book.book_id === Number(id));
+
+        console.log(bookExists)
+        if (bookExists.length > 0) {
+          res.status(422).json('You have already have this book in your shelf');
+        } else {
+          const [savedBook] = await Shelf.addBookToShelf({
+            user_id: Number(user_id),
+            book_id: Number(id)
+          });
+          res.status(200).json({ savedBook, message: 'Book saved to library' });
+        }
       } else {
         res.status(404).json({ error: 'Book not available' });
       }

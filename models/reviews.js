@@ -3,7 +3,9 @@ const db = require('../database/dbConfig');
 
 module.exports = {
   findReviewById: id => {
-    return db('reviews').where({ id }).first();
+    return db('reviews')
+      .where({ id })
+      .first();
   },
   findUsersReviews: id => {
     return db('reviews').where('reviewer', id);
@@ -25,12 +27,29 @@ module.exports = {
       review: Joi.string()
         .min(2)
         .max(255)
-        .required(),
-      reviewer: Joi.number().required(),
+        .required()
+        .error(errors => {
+          return {
+            message: 'Review is required.'
+          };
+        }),
+      reviewer: Joi.number()
+        .required()
+        .error(errors => {
+          return {
+            message: 'Reviewer ID is required.'
+          };
+        }),
       ratings: Joi.number()
         .required()
         .min(1)
         .max(5)
+        .error(errors => {
+          return {
+            errors,
+            message: 'Ratings is required and must be between 1 to 5.'
+          };
+        })
     });
     return Joi.validate(review, schema);
   }

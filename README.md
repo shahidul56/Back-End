@@ -113,7 +113,7 @@ These routes can only be accessed when token is sent in the authorization header
 
 #### URL: https://bookr-bw.herokuapp.com/api/users/:id
 
-Returns: an object with review details.
+Returns: an object with user details.
 
 ```
 {

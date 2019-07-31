@@ -224,7 +224,7 @@ Payload: an object with the following properties
 
 ```
 {
-    "book_id": :id,
+    "book_id": <:id from params>,
     "review": "Awesome read!",
     "reviewer": <user ID>,
     "ratings": 5
@@ -291,7 +291,7 @@ Payload: an object with the following properties
 
 ```
 {
-    "book_id": :id,
+    "book_id": <:id from params>,
     "review": "Awesome read!",
     "reviewer": <user ID>,
     "ratings": 4

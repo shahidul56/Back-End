@@ -5,7 +5,7 @@ module.exports = {
   getUsersByID: async (req, res) => {
     try {
       const { id } = req.params;
-      const [user] = await Users.findUserBy({ id });
+      const user = await Users.findUserBy({ id });
 
       user
         ? (delete user.password, res.status(200).json(user))
@@ -17,7 +17,7 @@ module.exports = {
   getUserShelf: async (req, res) => {
     try {
       const { id } = req.params;
-      const [user] = await Users.findUserBy({ id });
+      const user = await Users.findUserBy({ id });
       if (user) {
         const userShelf = await Shelf.getUserShelf(id);
 

@@ -21,7 +21,7 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const [loggedUser] = await Users.findUserBy({ email });
+      const loggedUser = await Users.findUserBy({ email });
       if (loggedUser && bcrypt.compareSync(password, loggedUser.password)) {
         delete loggedUser.password;
 

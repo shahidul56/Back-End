@@ -8,7 +8,7 @@ module.exports = {
       .returning('*');
   },
   findUserBy: filter => {
-    return db('users').where(filter);
+    return db('users').where(filter).first();
   },
   registerSchema: user => {
     const schema = Joi.object().keys({

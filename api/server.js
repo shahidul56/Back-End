@@ -15,4 +15,8 @@ server.get('/', (req, res) => {
   res.send('Welcome to Bookr');
 });
 
+server.all('*', (req, res) => {
+  res.send('Route does not exist');
+});
+
 module.exports = server;

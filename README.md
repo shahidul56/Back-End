@@ -24,20 +24,23 @@ Stretch Goal: A link to each book will take me to a site where I can purchase a 
 
 ## API Endpoints
 
-|    Links                                                     | Endpoints                  | 
-| ----------------                                             |----------------------------|
-| [POST Registration](#post-registration)                      | `/api/register`            |
-| [POST Login](#post-login)                                    | `/api/login`               |
-| [GET User By ID](#get-get-user-by-id)                        | `/api/users/:id`           | 
-| [GET Books](#get-get-all-books)                              | `/api/books`               | 
-| [GET Book By ID](#get-get-book-by-id)                        | `/api/books/:id`           | 
-| [DELETE Book By ID](#delete-delete-a-book)                   | `/api/books/:id `          | 
-| [POST Review for Book](#post-post-a-review-for-a-book)       | `/api/books/:id/review`    | 
-| [GET Review by ID](#get-get-a-review-by-id)                  | `/api/reviews/:id`         | 
-| [GET Reviews by User ID](#get-get-reviews-by-user-id)        | `/api/user/:id/reviews`    | 
-| [PUT Edit review by ID](#put-edit-review-by-id)              | `/api/reviews/:id`         | 
-| [DELETE Review by ID](#delete-delete-a-review)               | `/api/reviews/:id`         | 
-
+| Links                                                                | Endpoints               |
+| -------------------------------------------------------------------- | ----------------------- |
+| [POST Registration](#post-registration)                              | `/api/register`         |
+| [POST Login](#post-login)                                            | `/api/login`            |
+| [GET User By ID](#get-get-user-by-id)                                | `/api/users/:id`        |
+| [GET Books](#get-get-all-books)                                      | `/api/books`            |
+| [GET Book By ID](#get-get-book-by-id)                                | `/api/books/:id`        |
+| [POST Add new book](#post-add-new-book)                              | `/api/books`            |
+| [DELETE Book By ID](#delete-delete-a-book)                           | `/api/books/:id`        |
+| [POST Review for Book](#post-post-a-review-for-a-book)               | `/api/books/:id/review` |
+| [GET Review by ID](#get-get-a-review-by-id)                          | `/api/reviews/:id`      |
+| [GET Reviews by User ID](#get-get-reviews-by-user-id)                | `/api/user/:id/reviews` |
+| [PUT Edit review by ID](#put-edit-review-by-id)                      | `/api/reviews/:id`      |
+| [DELETE Review by ID](#delete-delete-a-review)                       | `/api/reviews/:id`      |
+| [POST Add book to shelf](#post-add-book-to-shelf)                    | `/api/books/:id/shelf`  |
+| [GET User's saved books in shelf](#get-get-users-saved-books)        | `/api/users/:id/shelf`  |
+| [DELETE User's book from shelf](#delete-users-saved-book-from-shelf) | `/api/books/:id/shelf`  |
 
 ## Authentication
 
@@ -111,7 +114,7 @@ These routes can only be accessed when token is sent in the authorization header
 
 #### URL: https://bookr-bw.herokuapp.com/api/users/:id
 
-Returns: an object with review details.
+Returns: an object with user details.
 
 ```
 {
@@ -141,9 +144,10 @@ The endpoint already has a list of dummy books for use.
         "subtitle": "A Modern Introduction to Programming",
         "author": "Marijn Haverbeke",
         "publisher": "No Starch Press",
-        "published": "2014-12-14T00:00:00.000Z",
+        "published": "2014",
         "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
-        "category": null
+        "url": "https://images-na.ssl-images-amazon.com/images/I/51-5ZXYtcML._SX377_BO1,204,203,200_.jpg",
+        "category": "Programming"
     },
     {
         "id": 2,
@@ -152,20 +156,10 @@ The endpoint already has a list of dummy books for use.
         "subtitle": "A JavaScript and jQuery Developer's Guide",
         "author": "Addy Osmani",
         "publisher": "O'Reilly Media",
-        "published": "2012-07-01T00:00:00.000Z",
+        "published": "2012",
         "description": "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.",
-        "category": null
-    },
-    {
-        "id": 3,
-        "isbn": "9781449365035",
-        "title": "Speaking JavaScript",
-        "subtitle": "An In-Depth Guide for Programmers",
-        "author": "Axel Rauschmayer",
-        "publisher": "O'Reilly Media",
-        "published": "2014-02-01T00:00:00.000Z",
-        "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
-        "category": null
+        "url": "https://addyosmani.com/resources/essentialjsdesignpatterns/cover/cover.jpg",
+        "category": "Programming"
     }
 ]
 ```
@@ -196,6 +190,43 @@ Returns: an object with book details and an array of its reviews.
             "book_id": 19
         }
     ]
+}
+```
+
+### [POST] Add new book
+
+#### URL: https://bookr-bw.herokuapp.com/api/books
+
+Payload: an object with the following properties
+
+```
+{
+    "isbn": "9781593275846",
+    "title": "Eloquent JavaScript, Second Edition",
+    "subtitle": "A Modern Introduction to Programming",
+    "author": "Marijn Haverbeke",
+    "publisher": "No Starch Press",
+    "published": "2014",
+    "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newestbrowser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex languagethat you can use to build full-scale applications.",
+    "url": "https://images-na.ssl-images-amazon.com/images/I/51-5ZXYtcML._SX377_BO1,204,203,200_.jpg",
+    "category": "Programming"
+}
+```
+
+Returns: an object with book details
+
+```
+{
+    "id": 1,
+    "isbn": "9781593275846",
+    "title": "Eloquent JavaScript, Second Edition",
+    "subtitle": "A Modern Introduction to Programming",
+    "author": "Marijn Haverbeke",
+    "publisher": "No Starch Press",
+    "published": "2014",
+    "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newestbrowser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex languagethat you can use to build full-scale applications.",
+    "url": "https://images-na.ssl-images-amazon.com/images/I/51-5ZXYtcML._SX377_BO1,204,203,200_.jpg",
+    "category": "Programming"
 }
 ```
 
@@ -231,7 +262,7 @@ Payload: an object with the following properties
 
 ```
 {
-    "book_id": :id,
+    "book_id": <:id from params>,
     "review": "Awesome read!",
     "reviewer": <user ID>,
     "ratings": 5
@@ -269,7 +300,7 @@ Returns: an object with review details
 
 #### URL: https://bookr-bw.herokuapp.com/api/user/:id/reviews
 
-Returns: an array with user reviews 
+Returns: an array with user reviews
 
 ```
 [
@@ -289,15 +320,16 @@ Returns: an array with user reviews
     }
 ]
 ```
+
 ### [PUT] Edit review by ID
 
-#### URL: https://bookr-bw.herokuapp.com/api/user/reviews/:id
+#### URL: https://bookr-bw.herokuapp.com/api/reviews/:id
 
 Payload: an object with the following properties
 
 ```
 {
-    "book_id": :id,
+    "book_id": <:id from params>,
     "review": "Awesome read!",
     "reviewer": <user ID>,
     "ratings": 4
@@ -329,6 +361,73 @@ Returns: an object with deleted review details.
         "ratings": 2,
         "review": "Hard to understand",
         "book_id": 19
+    }
+}
+```
+
+### [POST] Add book to shelf
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id/shelf
+
+Payload: an object with the following properties
+
+```
+{
+    "book_id": <:id from params>,
+    "user_id": <logged user id>
+}
+```
+
+Returns: an object with the saved book details.
+
+```
+{
+    "savedBook": {
+        "id": 10,
+        "book_id": 5,
+        "user_id": 2
+    },
+    "message": "Book saved to library"
+}
+```
+
+### [GET] Get user's saved books
+
+#### URL: https://bookr-bw.herokuapp.com/api/users/:id/shelf
+
+Returns: an array with the user's saved book details.
+
+```
+[
+    {
+        "id": 4,
+        "isbn": "9780435025052",
+        "title": "Interactive Mental Maths",
+        "subtitle": "Working with the Whole Class",
+        "author": "Peter Patilla",
+        "publisher": "Heinemann",
+        "published": "1999",
+        "description": "Interactive Mental Maths series is designed to support the implementation of the National Numeracy Strategy and Improving Mathematics Education 5-14. ",
+        "url": "http://books.google.com/books/content?id=oVSFhYCK3zAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        "category": "Mathematics",
+        "book_id": 8,
+        "user_id": 4
+    }
+]
+```
+
+### [DELETE] User's saved book from shelf
+
+#### URL: https://bookr-bw.herokuapp.com/api/books/:id/shelf
+
+Returns: an object with the deleted book details.
+
+```
+{
+    "deletedBook": {
+        "id": 4,
+        "book_id": 8,
+        "user_id": 4
     }
 }
 ```

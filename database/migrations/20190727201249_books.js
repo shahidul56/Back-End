@@ -8,11 +8,12 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable();
       book.string('title').notNullable();
-      book.string('subtitle').notNullable();
+      book.string('subtitle');
       book.string('author').notNullable();
       book.string('publisher').notNullable();
       book.string('published').notNullable();
       book.text('description').notNullable();
+      book.string('url').notNullable();
       book.string('category');
     })
     .createTable('reviews', review => {
@@ -39,8 +40,30 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })
+    .createTable('shelf', shelf => {
+      shelf.increments();
+      shelf
+        .integer('book_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('books')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      shelf
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('reviews').dropTableIfExists('books');
+  return knex.schema
+    .dropTableIfExists('shelf')
+    .dropTableIfExists('reviews')
+    .dropTableIfExists('books');
 };

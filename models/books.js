@@ -9,7 +9,14 @@ module.exports = {
     return db('reviews').where('book_id', id);
   },
   findBookBy: id => {
-    return db('books').where({ id });
+    return db('books')
+      .where({ id })
+      .first();
+  },
+  addBook: book => {
+    return db('books')
+      .insert(book)
+      .returning('*');
   },
   addBookReview: review => {
     return db('reviews')
@@ -27,12 +34,28 @@ module.exports = {
       review: Joi.string()
         .min(2)
         .max(255)
-        .required(),
-      reviewer: Joi.number().required(),
+        .required()
+        .error(errors => {
+          return {
+            message: 'Review is required.'
+          };
+        }),
+      reviewer: Joi.number()
+        .required()
+        .error(errors => {
+          return {
+            message: 'Reviewer ID is required.'
+          };
+        }),
       ratings: Joi.number()
         .required()
         .min(1)
         .max(5)
+        .error(errors => {
+          return {
+            message: 'Ratings is required and must be between 1 to 5.'
+          };
+        })
     });
 
     return Joi.validate(user, schema);

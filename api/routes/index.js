@@ -14,8 +14,10 @@ router.post('/register', validate(Users.registerSchema), auth.register);
 router.post('/login', validate(Users.loginSchema), auth.login);
 
 // Users
-
 router.get('/users/:id', authenticate, users.getUsersByID);
+router.post('/books/:id/shelf', authenticate, books.saveBooktoShelf);
+router.get('/users/:id/shelf', authenticate, users.getUserShelf);
+router.delete('/books/:id/shelf', authenticate, books.deleteBookFromShelf);
 
 // Books
 router.get('/books', authenticate, books.getBooks);
@@ -26,6 +28,7 @@ router.post(
   authenticate,
   reviews.addReview
 );
+router.post('/books', authenticate, books.addNewBook);
 router.delete('/books/:id', authenticate, books.deleteBookById);
 
 // Reviews

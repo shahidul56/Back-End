@@ -13,6 +13,11 @@ module.exports = {
       .where({ id })
       .first();
   },
+  addBook: book => {
+    return db('books')
+      .insert(book)
+      .returning('*');
+  },
   addBookReview: review => {
     return db('reviews')
       .insert(review)
@@ -48,7 +53,6 @@ module.exports = {
         .max(5)
         .error(errors => {
           return {
-            errors,
             message: 'Ratings is required and must be between 1 to 5.'
           };
         })

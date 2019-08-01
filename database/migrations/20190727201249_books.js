@@ -4,6 +4,7 @@ exports.up = function(knex) {
       book.increments();
       book
         .bigInteger('isbn')
+        .unique()
         .unsigned()
         .notNullable();
       book.string('title').notNullable();

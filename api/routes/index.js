@@ -28,6 +28,7 @@ router.post(
   authenticate,
   reviews.addReview
 );
+router.post('/books', authenticate, books.addNewBook);
 router.delete('/books/:id', authenticate, books.deleteBookById);
 
 // Reviews

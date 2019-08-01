@@ -8,10 +8,11 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env DB_ENV=production node index.js",
-    "test": "cross-env DB_ENV=testing jest --watch --verbose",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "test": "cross-env DB_ENV=testing jest --verbose --forceExit",
+    "pretest": "yarn run rollback && yarn run migrate && yarn run seed",
+    "migrate": "knex migrate:latest --env=testing",
+    "rollback": "knex migrate:rollback --env=testing",
+    "seed": "knex seed:run --env=testing"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.0",
@@ -28,7 +29,7 @@
     "cross-env": "^5.2.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
-    "supertest": "^4.0.2"
-    "eslint": "^6.1.0",
+    "supertest": "^4.0.2",
+    "eslint": "^6.1.0"
   }
 }

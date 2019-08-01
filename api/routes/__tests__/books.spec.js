@@ -1,4 +1,4 @@
-const db = require('../../../database/dbConfig');
+require('dotenv').config();
 const server = require('../../server');
 const request = require('supertest')(server);
 let token;
@@ -24,7 +24,6 @@ beforeAll(done => {
           done();
         });
     });
-     db.raw('TRUNCATE TABLE users, books, reviews CASCADE');
 });
 
 describe('Books', () => {
@@ -41,22 +40,35 @@ describe('Books', () => {
 
   it('Should return an object of an individual book when the id is passed in the url', () => {
     return request
-    .get('/api/books/1')
-    .set('Authorization', token)
-    .expect(200)
-  })
+      .get('/api/books/1')
+      .set('Authorization', token)
+      .expect(200);
+  });
 
   it('Should return an error if the book is not available', () => {
     return request
-    .get('/api/books/1000')
-    .set('Authorization', token)
-    .expect(404)
-  })
+      .get('/api/books/1000')
+      .set('Authorization', token)
+      .expect(404);
+  });
 
-  // it('Should delete the book with that id', () => {
-  //   return request
-  //   .delete('/api/books/8')
-  //   .set('Authorization', token)
-  //   .expect(200);
-  // })
+  it('Should delete the book with that id', () => {
+    return request
+      .delete('/api/books/8')
+      .set('Authorization', token)
+      .expect(200);
+  });
+});
+
+describe('Shelf', () => {
+  it('Users are add a book to shelf', () => {
+    return request
+      .post('/api/books/1/shelf')
+      .send({
+        user_id: 1
+      })
+      .set('Authorization', token)
+      .expect(201)
+      .expect('Content-Type', /json/);
+  });
 });

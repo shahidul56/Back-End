@@ -1,5 +1,6 @@
 const Books = require('../../models/books');
 const Shelf = require('../../models/shelf');
+const ratingsAverage = require('../../lib/findReviewAverage');
 
 module.exports = {
   getBooks: async (req, res) => {
@@ -17,6 +18,7 @@ module.exports = {
       if (book) {
         const reviews = await Books.getBookReviews(id);
         book.reviews = reviews;
+        book.averageRatings = ratingsAverage(reviews);
       } else {
         res.status(404).json({ error: 'This book does not exist' });
       }
@@ -61,8 +63,6 @@ module.exports = {
         const bookExists = userShelf.filter(
           book => book.book_id === Number(id)
         );
-
-        console.log(bookExists);
         if (bookExists.length > 0) {
           res.status(422).json('You have already have this book in your shelf');
         } else {
@@ -70,7 +70,7 @@ module.exports = {
             user_id: Number(user_id),
             book_id: Number(id)
           });
-          res.status(200).json({ savedBook, message: 'Book saved to library' });
+          res.status(201).json({ savedBook, message: 'Book saved to library' });
         }
       } else {
         res.status(404).json({ error: 'Book not available' });

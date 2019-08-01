@@ -25,10 +25,19 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+
+  addNewBook: async (req, res) => {
+    try {
+      const [newBook] = await Books.addBook(req.body);
+      res.status(201).json(newBook);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  },
   deleteBookById: async (req, res) => {
     try {
       const { id } = req.params;
-      const [book] = await Books.findBookBy(id);
+      const book = await Books.findBookBy(id);
       if (book) {
         const delBook = await Books.deleteBook(id);
         res.status(200).json({ deletedBook: delBook });
@@ -47,11 +56,13 @@ module.exports = {
 
       if (book) {
         const userShelf = await Shelf.getUserShelf(user_id);
-        console.log(userShelf)
+        console.log(userShelf);
 
-        const bookExists = userShelf.filter(book => book.book_id === Number(id));
+        const bookExists = userShelf.filter(
+          book => book.book_id === Number(id)
+        );
 
-        console.log(bookExists)
+        console.log(bookExists);
         if (bookExists.length > 0) {
           res.status(422).json('You have already have this book in your shelf');
         } else {

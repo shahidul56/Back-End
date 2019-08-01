@@ -209,7 +209,7 @@ exports.seed = function(knex) {
             'Written by a nationally known physical education teacher and author, this one-of-a-kind book contains PE games that allow children to develop team and lifetime sport skills in an exciting and meaningful setting--leaving them motivated, challenged, and enthusiastic about sport participation. In all, this user-friendly resource contains field-tested activities proven to enhance sport skills in fourteen sport categories--the most comprehensive sport lead-up game book available to physical educators.',
           url:
             'https://m.media-amazon.com/images/I/51sOtYGXoZL._SR500,500_.jpg',
-          category: 'Physical Education'
+          category: 'Physical_Education'
         },
         {
           isbn: 9781284034196,
@@ -223,7 +223,7 @@ exports.seed = function(knex) {
             'Elementary school physical educators looking for expert guidance in designing lessons that are aligned with SHAPE Americas National Standards and Grade-Level Outcomes need look no further.',
           url:
             'https://images-na.ssl-images-amazon.com/images/I/51CDwl5TZjL._SX384_BO1,204,203,200_.jpg',
-          category: 'Physical Education'
+          category: 'Physical_Education'
         },
         {
           isbn: 9781401302262,
@@ -237,7 +237,7 @@ exports.seed = function(knex) {
             'Nationally recognized communication expert Debra Fine reveals the techniques and strategies anyone can use to make small talk--in any situation. Do you spend an abnormal amount of time hiding out in the bathroom or hanging out at the buffet table at social gatherings? Does the thought of striking up a conversation with a stranger make your stomach do flip-flops? Do you sit nervously through job interviews waiting for the other person to speak? Are you a "Nervous Ned or Nellie" when it comes to networking? Then it\'s time you mastered The Fine Art of Small Talk.',
           url:
             'https://images-na.ssl-images-amazon.com/images/I/41ounFtxvHL._SX329_BO1,204,203,200_.jpg',
-          category: 'Fine Arts'
+          category: 'Fine_Arts'
         },
         {
           isbn: 9780631230403,
@@ -250,7 +250,7 @@ exports.seed = function(knex) {
             'Sociology of the Arts is a comprehensive overview of the sociology of art and an authoritative work of scholarship by a leading expert in the field. The book synthesizes the various theoretical models of art sociology, and provides empirical examples as well as stimulating exemplars of sociological work on the arts. Case studies of art works are from both ends of the cultural spectrum: fine arts (theatre, dance, symphony, opera) and popular arts (Hollywood movies, pop music, pulp fiction, TV drama, comedy and advertising).',
           url:
             'https://images-na.ssl-images-amazon.com/images/I/512CU4tWWBL._SX331_BO1,204,203,200_.jpg',
-          category: 'Fine Arts'
+          category: 'Fine_Arts'
         },
         {
           isbn: 9781305088931,
@@ -263,7 +263,7 @@ exports.seed = function(knex) {
             "EARLY CHILDHOOD EXPERIENCE IN LANGUAGE ARTS: EARLY LITERACY, Eleventh Edition responds to national legislation, professional standards, and public concern about the development of young children's language and foundational literacy skills by providing current research-based instructional strategies in early language development. Activities throughout emphasize the relationship between listening, speaking, reading, writing (print), and viewing in language arts areas.",
           url:
             'https://images-na.ssl-images-amazon.com/images/I/51RMYrpeOHL._SX389_BO1,204,203,200_.jpg',
-          category: 'Language Arts'
+          category: 'Language_Arts'
         },
         {
           isbn: 9780205325276,
@@ -276,7 +276,7 @@ exports.seed = function(knex) {
             'With clear, accessible language and practical, concrete examples from real writing and teaching situations, Grammar for Language Arts Teachers (GLAT) provides a contextualized and comprehensive overview of English grammar.',
           url:
             'https://images-na.ssl-images-amazon.com/images/I/41C%2BVS35E4L._SX331_BO1,204,203,200_.jpg',
-          category: 'Language Arts'
+          category: 'Language_Arts'
         },
         {
           isbn: 9780134479262,

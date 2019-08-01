@@ -28,7 +28,7 @@ module.exports = {
 
   addNewBook: async (req, res) => {
     try {
-      const newBook = await Books.addBook(req.body);
+      const [newBook] = await Books.addBook(req.body);
       res.status(201).json(newBook);
     } catch (error) {
       res.status(500).json({ error });

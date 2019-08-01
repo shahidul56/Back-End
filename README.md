@@ -213,6 +213,23 @@ Payload: an object with the following properties
 }
 ```
 
+Returns: an object with book details
+
+```
+{
+    "id": 1,
+    "isbn": "9781593275846",
+    "title": "Eloquent JavaScript, Second Edition",
+    "subtitle": "A Modern Introduction to Programming",
+    "author": "Marijn Haverbeke",
+    "publisher": "No Starch Press",
+    "published": "2014",
+    "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newestbrowser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex languagethat you can use to build full-scale applications.",
+    "url": "https://images-na.ssl-images-amazon.com/images/I/51-5ZXYtcML._SX377_BO1,204,203,200_.jpg",
+    "category": "Programming"
+}
+```
+
 ### [DELETE] Delete a book
 
 #### URL: https://bookr-bw.herokuapp.com/api/books/:id

@@ -7,9 +7,9 @@
   "author": "Nabeelah <nabeelahyousuph@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env DB_ENV=production node index.js",
+    "start": "node index.js",
     "test": "cross-env DB_ENV=testing jest --verbose --forceExit",
-    "pretest": "npm run rollback && npm run migrate && npm run seed",
+    "pretest": "yarn run rollback && yarn run migrate && yarn run seed",
     "migrate": "knex migrate:latest --env=testing",
     "rollback": "knex migrate:rollback --env=testing",
     "seed": "knex seed:run --env=testing"

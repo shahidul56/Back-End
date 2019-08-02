@@ -17,8 +17,8 @@ module.exports = {
       const book = await Books.findBookBy(id);
       if (book) {
         const reviews = await Books.getBookReviews(id);
-        book.reviews = reviews;
         book.averageRatings = ratingsAverage(reviews);
+        book.reviews = reviews;
       } else {
         res.status(404).json({ error: 'This book does not exist' });
       }

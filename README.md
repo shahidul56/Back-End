@@ -147,7 +147,10 @@ The endpoint already has a list of dummy books for use.
         "published": "2014",
         "description": "JavaScript lies at the heart of almost every modern web application, from social apps to the newest browser-based games. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications.",
         "url": "https://images-na.ssl-images-amazon.com/images/I/51-5ZXYtcML._SX377_BO1,204,203,200_.jpg",
-        "category": "Programming"
+        "category": "Programming",
+        "no_of_reviews": "5",
+        "sum_of_reviews": "13",
+        "avgRating": 2
     },
     {
         "id": 2,
@@ -159,7 +162,10 @@ The endpoint already has a list of dummy books for use.
         "published": "2012",
         "description": "With Learning JavaScript Design Patterns, you'll learn how to write beautiful, structured, and maintainable JavaScript by applying classical and modern design patterns to the language. If you want to keep your code efficient, more manageable, and up-to-date with the latest best practices, this book is for you.",
         "url": "https://addyosmani.com/resources/essentialjsdesignpatterns/cover/cover.jpg",
-        "category": "Programming"
+        "category": "Programming",
+        "no_of_reviews": "5",
+        "sum_of_reviews": "18",
+        "avgRating": 3
     }
 ]
 ```
@@ -181,6 +187,7 @@ Returns: an object with book details and an array of its reviews.
     "published": "2014-02-01T00:00:00.000Z",
     "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who once found himself in the same position.",
     "category": null,
+    "averageRatings": 2,
     "reviews": [
         {
             "id": 16,

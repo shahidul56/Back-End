@@ -4,9 +4,22 @@ const db = require('../database/dbConfig');
 module.exports = {
   getAllBooks: () => {
     return db('books');
+    // const books = await db('books AS bk')
+    //   .select('*')
+    //   .count('rv.ratings AS no_of_reviews')
+    //   .sum('rv.ratings AS sum')
+    //   .leftJoin('reviews AS rv', 'bk.id', 'rv.book_id')
+    //   .groupBy('bk.id', 'rv.id').catch((err) => {
+    //     console.log(err.message)
+    //   });
+
+    // return books.map(book => ({
+    //   ...book,
+    //   avgRating: parseInt(book.sum/book.no_of_reviews, 10),
+    // }))
   },
   getBookReviews: id => {
-    return db('reviews').where('book_id', id);
+    return db('reviews').where('book_id', id).orderBy('reviews.id', 'desc');
   },
   findBookBy: id => {
     return db('books')

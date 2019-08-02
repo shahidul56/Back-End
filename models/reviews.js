@@ -8,7 +8,9 @@ module.exports = {
       .first();
   },
   findUsersReviews: id => {
-    return db('reviews').where('reviewer', id);
+    return db('reviews')
+      .where('reviewer', id)
+      .orderBy('reviews.id', 'desc');
   },
   updateReview: (id, review) => {
     return db('reviews')

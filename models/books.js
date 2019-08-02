@@ -2,24 +2,27 @@ const Joi = require('@hapi/joi');
 const db = require('../database/dbConfig');
 
 module.exports = {
-  getAllBooks: () => {
-    return db('books');
-    // const books = await db('books AS bk')
-    //   .select('*')
-    //   .count('rv.ratings AS no_of_reviews')
-    //   .sum('rv.ratings AS sum')
-    //   .leftJoin('reviews AS rv', 'bk.id', 'rv.book_id')
-    //   .groupBy('bk.id', 'rv.id').catch((err) => {
-    //     console.log(err.message)
-    //   });
+  getAllBooks: async () => {
+    const books = await db('books AS bk')
+      .select('bk.*')
+      .count('rv.ratings AS no_of_reviews')
+      .sum('rv.ratings AS sum_of_reviews')
+      .leftJoin('reviews AS rv', 'bk.id', 'rv.book_id')
+      .groupBy('bk.id', 'rv.book_id')
+      .orderBy('bk.id', 'asc')
+      .catch(error => {
+        throw new Error(error);
+      });
 
-    // return books.map(book => ({
-    //   ...book,
-    //   avgRating: parseInt(book.sum/book.no_of_reviews, 10),
-    // }))
+    return books.map(book => ({
+      ...book,
+      avgRating: parseInt(book.sum_of_reviews / book.no_of_reviews, 10)
+    }));
   },
   getBookReviews: id => {
-    return db('reviews').where('book_id', id).orderBy('reviews.id', 'desc');
+    return db('reviews')
+      .where('book_id', id)
+      .orderBy('reviews.id', 'desc');
   },
   findBookBy: id => {
     return db('books')
